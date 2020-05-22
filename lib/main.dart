@@ -13,7 +13,11 @@ class MyApp extends StatelessWidget {
       initialRoute: 'home',
       routes: {
         'home' : (BuildContext context) => HomePage()
-      }
+      },
+      //Tema centralizado, desde aqui se controla
+      theme: ThemeData(
+        primaryColor: Colors.deepPurple
+      ),
     );
   }
 }
