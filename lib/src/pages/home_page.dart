@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:qrreaderapp/src/pages/direcciones_page.dart';
 import 'package:qrreaderapp/src/pages/mapas_page.dart';
+
+import 'package:barcode_scan/barcode_scan.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -28,10 +31,26 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.filter_center_focus),
-        onPressed: (){},
+        onPressed: _scanQR,
         backgroundColor: Theme.of(context).primaryColor,
       ),
     );
+  }
+
+  _scanQR() async{
+
+    //---> https://www.facebook.com
+    //---> geo:13.675499538648998,-89.28818121394046
+
+    dynamic futureString ='';
+ 
+    try {
+      futureString = await BarcodeScanner.scan();
+    }catch(e){
+      futureString=e.toString();
+    }
+ 
+  print('Future String: ${futureString.rawContent}');
   }
 
   Widget _callPage(int paginaActual){
