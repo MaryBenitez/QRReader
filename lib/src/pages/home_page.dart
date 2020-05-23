@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  //Aqui lee la informacion del codigo QR
   _scanQR() async{
 
     //---> https://www.facebook.com
@@ -44,13 +45,20 @@ class _HomePageState extends State<HomePage> {
 
     dynamic futureString ='';
  
+ /*
     try {
       futureString = await BarcodeScanner.scan();
     }catch(e){
       futureString=e.toString();
     }
  
-  print('Future String: ${futureString.rawContent}');
+    print('Future String: ${futureString.rawContent}');
+
+    if(futureString != null){
+      print('Tenemos informacion');
+    }
+
+  */
   }
 
   Widget _callPage(int paginaActual){
