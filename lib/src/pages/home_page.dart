@@ -35,14 +35,14 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.filter_center_focus),
-        onPressed: _scanQR,
+        onPressed: () => _scanQR(context),
         backgroundColor: Theme.of(context).primaryColor,
       ),
     );
   }
 
   //Aqui lee la informacion del codigo QR
-  _scanQR() async {
+  _scanQR(BuildContext context) async {
     //---> https://www.facebook.com
     //---> geo:13.675499538648998,-89.28818121394046
 
@@ -72,13 +72,13 @@ class _HomePageState extends State<HomePage> {
       //Por problema en IOS
       if (Platform.isIOS) {
         Future.delayed(Duration(milliseconds: 750), () {
-          utils.abrirScan(scan);
+          utils.abrirScan(context, scan);
         });
       } else {
-        utils.abrirScan(scan);
+        utils.abrirScan(context, scan);
       }
 
-      utils.abrirScan(scan);
+      utils.abrirScan(context, scan);
     }
   }
 
