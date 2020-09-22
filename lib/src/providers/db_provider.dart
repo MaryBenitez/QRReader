@@ -3,6 +3,7 @@
 import 'dart:io';
 import 'package:path/path.dart';
 import 'package:qrreaderapp/src/models/scan_model.dart';
+export 'package:qrreaderapp/src/models/scan_model.dart';
 
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -78,7 +79,7 @@ class DBProvider {
     return res.isNotEmpty ? ScanModel.fromJson(res.first) : null;
   }
 
-  Future<List<ScanModel>> getTodosScans(int id) async {
+  Future<List<ScanModel>> getTodosScans() async {
     final db = await database;
     final res = await db.query('Scans');
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:qrreaderapp/src/models/scan_model.dart';
 
 import 'package:qrreaderapp/src/pages/direcciones_page.dart';
 import 'package:qrreaderapp/src/pages/mapas_page.dart';
+import 'package:qrreaderapp/src/providers/db_provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -38,6 +40,8 @@ class _HomePageState extends State<HomePage> {
 
     //dynamic futureString ='';
 
+    String futureString = 'https://www.facebook.com';
+
 /*
     try {
       futureString = await BarcodeScanner.scan();
@@ -46,12 +50,13 @@ class _HomePageState extends State<HomePage> {
     }
 
     print('Future String: ${futureString.rawContent}');
+*/
+    if (futureString != null) {
+      final scan = ScanModel(valor: futureString);
+      DBProvider.db.nuevoScan(scan);
 
-    if(futureString != null){
       print('Tenemos informacion');
     }
-
-  */
   }
 
   Widget _callPage(int paginaActual) {
