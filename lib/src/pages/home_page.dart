@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:qrreaderapp/src/bloc/scans_bloc.dart';
 import 'package:qrreaderapp/src/models/scan_model.dart';
 
 import 'package:qrreaderapp/src/pages/direcciones_page.dart';
 import 'package:qrreaderapp/src/pages/mapas_page.dart';
+import 'package:qrreaderapp/src/utils/utils.dart' as utils;
 
 class HomePage extends StatefulWidget {
   @override
@@ -45,7 +48,7 @@ class _HomePageState extends State<HomePage> {
 
     //dynamic futureString ='';
 
-    String futureString = 'https://www.facebook.com';
+    String futureString = 'https://www.google.com';
 
 /*
     try {
@@ -60,7 +63,22 @@ class _HomePageState extends State<HomePage> {
       final scan = ScanModel(valor: futureString);
       scansBloc.agregarScan(scan);
 
+      final scan2 =
+          ScanModel(valor: 'geo:13.675499538648998,-89.28818121394046');
+      scansBloc.agregarScan(scan2);
+
       print('Tenemos informacion');
+
+      //Por problema en IOS
+      if (Platform.isIOS) {
+        Future.delayed(Duration(milliseconds: 750), () {
+          utils.abrirScan(scan);
+        });
+      } else {
+        utils.abrirScan(scan);
+      }
+
+      utils.abrirScan(scan);
     }
   }
 
