@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:qrreaderapp/src/bloc/scans_bloc.dart';
 import 'package:qrreaderapp/src/models/scan_model.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 
 import 'package:qrreaderapp/src/pages/direcciones_page.dart';
 import 'package:qrreaderapp/src/pages/mapas_page.dart';
@@ -48,24 +49,19 @@ class _HomePageState extends State<HomePage> {
 
     //dynamic futureString ='';
 
-    String futureString = 'https://www.google.com';
+    ScanResult futureString;
 
-/*
     try {
       futureString = await BarcodeScanner.scan();
-    }catch(e){
-      futureString=e.toString();
+    } catch (e) {
+      futureString = e.toString(context);
     }
 
     print('Future String: ${futureString.rawContent}');
-*/
-    if (futureString != null) {
-      final scan = ScanModel(valor: futureString);
-      scansBloc.agregarScan(scan);
 
-      final scan2 =
-          ScanModel(valor: 'geo:13.675499538648998,-89.28818121394046');
-      scansBloc.agregarScan(scan2);
+    if (futureString != null) {
+      final scan = ScanModel(valor: futureString.rawContent);
+      scansBloc.agregarScan(scan);
 
       print('Tenemos informacion');
 
